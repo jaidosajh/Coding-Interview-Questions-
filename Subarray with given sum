@@ -1,0 +1,30 @@
+public static int[] findSubArray(int[] arr, int s) {
+    if (arr == null || arr.length == 0) {
+        return new int[]{};
+    }
+    
+    // Initialize variables to keep track of the current sum and the left and right indices of the subarray
+    int curSum = 0;
+    int leftIndex = -1;
+    int rightIndex = -1;
+    
+    for (int i = 0; i < arr.length; i++) {
+        // Update the current sum by adding the current element to it
+        curSum += arr[i];
+        
+        // Check if the current sum is equal to s and update the left and right indices accordingly
+        if (curSum == s) {
+            leftIndex = i - 1;
+            rightIndex = i;
+            break;
+        }
+    }
+    
+    // If no subarray was found, return an array with -1 as the only element
+    if (leftIndex == -1 && rightIndex == -1) {
+        return new int[]{-1};
+    } else {
+        // Return the left and right indices of the subarray
+        return new int[]{leftIndex + 1, rightIndex + 1};
+    }
+}
